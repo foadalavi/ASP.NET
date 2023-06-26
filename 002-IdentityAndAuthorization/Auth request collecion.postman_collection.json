@@ -1,0 +1,624 @@
+{
+	"info": {
+		"_postman_id": "f584ff1b-9fe7-4d11-89ab-62acf8586b0c",
+		"name": "Auth request collecion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2393715"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"cont\",\r\n  \"password\": \"123\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5290/api/Auth/Login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5290",
+							"path": [
+								"api",
+								"Auth",
+								"Login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"foadalavi@gmail.com\",\r\n  \"password\": \"P@ssw0rd\",\r\n  \"claims\": [\r\n    {\r\n      \"type\": \"student\",\r\n      \"value\": \"31\"\r\n    },\r\n    {\r\n      \"type\": \"module\",\r\n      \"value\": \"7\"\r\n    },\r\n    {\r\n      \"type\": \"teacher\",\r\n      \"value\": \"15\"\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5291/api/Auth/Register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5291",
+							"path": [
+								"api",
+								"Auth",
+								"Register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "GET",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5291/api/Student/GetStudent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5291",
+							"path": [
+								"api",
+								"Student",
+								"GetStudent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5291/api/Student/AddStudent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5291",
+							"path": [
+								"api",
+								"Student",
+								"AddStudent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5291/api/Student/DeleteStudent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5291",
+							"path": [
+								"api",
+								"Student",
+								"DeleteStudent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5291/api/Student/UpdateStudent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5291",
+							"path": [
+								"api",
+								"Student",
+								"UpdateStudent"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module",
+			"item": [
+				{
+					"name": "GET",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5291/api/Module/GetModule",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5291",
+							"path": [
+								"api",
+								"Module",
+								"GetModule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5291/api/Module/AddModule",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5291",
+							"path": [
+								"api",
+								"Module",
+								"AddModule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5291/api/Module/DeleteModule",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5291",
+							"path": [
+								"api",
+								"Module",
+								"DeleteModule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5291/api/Module/UpdateModule",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5291",
+							"path": [
+								"api",
+								"Module",
+								"UpdateModule"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher",
+			"item": [
+				{
+					"name": "GET",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5291/api/Teacher/GetTeacher",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5291",
+							"path": [
+								"api",
+								"Teacher",
+								"GetTeacher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5291/api/Teacher/AddTeacher",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5291",
+							"path": [
+								"api",
+								"Teacher",
+								"AddTeacher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5291/api/Teacher/DeleteTeacher",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5291",
+							"path": [
+								"api",
+								"Teacher",
+								"DeleteTeacher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5291/api/Teacher/UpdateTeacher",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5291",
+							"path": [
+								"api",
+								"Teacher",
+								"UpdateTeacher"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ClassRoom",
+			"item": [
+				{
+					"name": "GET",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5291/api/ClassRoom/GetClassRoom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5291",
+							"path": [
+								"api",
+								"ClassRoom",
+								"GetClassRoom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5291/api/ClassRoom/AddClassRoom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5291",
+							"path": [
+								"api",
+								"ClassRoom",
+								"AddClassRoom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5291/api/ClassRoom/DeleteClassRoom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5291",
+							"path": [
+								"api",
+								"ClassRoom",
+								"DeleteClassRoom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JwtToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5291/api/ClassRoom/UpdateClassRoom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5291",
+							"path": [
+								"api",
+								"ClassRoom",
+								"UpdateClassRoom"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "JwtToken",
+			"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJTdHVkZW50IjoiNyIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJmb2FkYWxhdmlAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiZm9hZGFsYXZpQGdtYWlsLmNvbSIsImV4cCI6MTY4NzQ0MjUyOSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTIwNiIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjUwOTIifQ.jxoLLXykQkvgjgS4tr0TtZimx9yuAMbpbwz-H_rmCKXIalFXsj72pV5oHEojCUcdV2peUukKlRNjX8sFi6l5hg"
+		}
+	]
+}

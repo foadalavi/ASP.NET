@@ -1,0 +1,27 @@
+﻿@page
+@model Application.Ui.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form id="registerForm" method="post">
+            <h2>Login</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="UserCredential.Username" class="form-control" autocomplete="off" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="UserCredential.Username">Email</label>
+                <span asp-validation-for="UserCredential.Username" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="UserCredential.Password" class="form-control" autocomplete="off" aria-required="true" placeholder="password" />
+                <label asp-for="UserCredential.Password">Password</label>
+                <span asp-validation-for="UserCredential.Password" class="text-danger"></span>
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Login</button>
+        </form>
+    </div>
+
+</div>
