@@ -11,6 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Services", "App
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Api", "Application.Api\Application.Api.csproj", "{170B425B-BCC2-492D-9BC8-E16E025C715F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F52D34FC-F967-4021-B808-9AB3D9B16374}"
+	ProjectSection(SolutionItems) = preProject
+		Auth request collecion.postman_collection.json = Auth request collecion.postman_collection.json
+		Role Claim.sql = Role Claim.sql
+		Role user.sql = Role user.sql
+		User Claim.sql = User Claim.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
