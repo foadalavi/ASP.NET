@@ -8,5 +8,6 @@ namespace Application.Services.DataContexts
         public UserIdentityContext(DbContextOptions<UserIdentityContext> options) : base(options)
         {
         }
+
     }
 }

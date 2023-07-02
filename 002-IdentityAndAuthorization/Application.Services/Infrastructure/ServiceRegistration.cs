@@ -1,7 +1,6 @@
 ﻿using Application.Services.DataContexts;
 using Application.Services.Helper;
 using Application.Services.Identity;
-using Application.Services.Infrastructure.Authorizaion;
 using Application.Services.Infrastructure.Authorizaion.Requirements;
 using Application.Services.Model;
 using Application.Services.Model.TypeSafe;
@@ -10,19 +9,16 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Routing.Matching;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json.Linq;
-using Services.Infrastructure.Authorizaion.Requirements;
 using System.Security.Claims;
 using System.Text;
 
 namespace Application.Services.Infrastructure
 {
-    public static class MiddlewareExtension
+    public static class ServiceRegistration
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, string? connectionStringConfigName)
         {
@@ -37,7 +33,6 @@ namespace Application.Services.Infrastructure
 
         public static IdentityBuilder AddApplicationIdentity(this IServiceCollection services)
         {
-            //return services.AddIdentity<IdentityUser,IdentityRole>(options =>
             return services.AddDefaultIdentity<IdentityUser>(options =>
             {
                 // configuration can be written here:
@@ -53,7 +48,7 @@ namespace Application.Services.Infrastructure
                 options.Password.RequiredUniqueChars = 0;
 
                 // Lockout settings.
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(60);
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = true;
 
@@ -65,114 +60,19 @@ namespace Application.Services.Infrastructure
             .AddEntityFrameworkStores<UserIdentityContext>();
         }
 
-        public static IServiceCollection AddApplicationAuthorization(this IServiceCollection services)
-        {
-            services.AddAuthorization(options =>
-            {
-                //// Policy based Role auth
-                //options.AddPolicy(TS.Policies.FullControlPolicy, policy =>
-                //{
-                //    policy.RequireRole(TS.Roles.Admin);
-                //});
-
-                //options.AddPolicy(TS.Policies.ReadAndWritePolicy, policy =>
-                //{
-                //    policy.RequireRole(TS.Roles.Contributor,
-                //        TS.Roles.Admin);
-                //});
-
-                //options.AddPolicy(TS.Policies.ReadPolicy, policy =>
-                //{
-                //    policy.RequireRole(TS.Roles.User,
-                //        TS.Roles.Contributor,
-                //        TS.Roles.Admin);
-                //});
-
-
-                //// Calim based auth
-                //options.AddPolicy(TS.Policies.FullControlPolicy, policy =>
-                //{
-                //    policy.RequireClaim(TS.Contoller.Module);
-                //});
-
-                //options.AddPolicy(TS.Policies.ReadAndWritePolicy, policy =>
-                //{
-                //    policy.RequireClaim(TS.Contoller.Module);
-                //});
-
-                //options.AddPolicy(TS.Policies.ReadPolicy, policy =>
-                //{
-                //    policy.RequireClaim(TS.Contoller.Module);
-                //});
-
-
-                //// Calim based auth using value
-                //options.AddPolicy(TS.Policies.FullControlPolicy, policy =>
-                //{
-                //    policy.RequireClaim(TS.Contoller.Module,
-                //        TS.Permissions.Delete.ToString(),
-                //        TS.Permissions.Update.ToString());
-                //});
-
-                //options.AddPolicy(TS.Policies.ReadAndWritePolicy, policy =>
-                //{
-                //    policy.RequireClaim(TS.Contoller.Module,
-                //        TS.Permissions.Write.ToString());
-                //});
-
-                //options.AddPolicy(TS.Policies.ReadPolicy, policy =>
-                //{
-                //    policy.RequireClaim(TS.Contoller.Module,
-                //        TS.Permissions.Read.ToString());
-                //});
-
-                ////Policy-based auth
-                //options.AddPolicy(TS.Policies.FullControlPolicy, policy =>
-                //{
-                //    policy.Requirements.Add(new AdminRequirements());
-                //});
-
-                //options.AddPolicy(TS.Policies.ReadAndWritePolicy, policy =>
-                //{
-                //    policy.Requirements.Add(new ContributorRequirements());
-                //});
-
-                //options.AddPolicy(TS.Policies.ReadPolicy, policy =>
-                //{
-                //    policy.Requirements.Add(new UserRequirements());
-                //});
-
-
-
-
-                options.AddPolicy(TS.Policies.GenericPolicy, policy =>
-                {
-                    policy.Requirements.Add(new ConventionBasedRequirements());
-                });
-            });
-            //services.AddSingleton<IAuthorizationHandler, AdminRequirementHandler>();
-            //services.AddSingleton<IAuthorizationHandler, ContributorRequirementHandler>();
-            //services.AddSingleton<IAuthorizationHandler, UserRequirementHandler>();
-
-
-            services.AddSingleton<IAuthorizationHandler, ConventionBasedRequirementHandler>();
-
-            return services;
-        }
-
         public static IServiceCollection AddApplicationCookieAuth(this IServiceCollection services)
         {
             services
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+                .AddCookie(options =>
                 {
-                    options.Cookie.Name = CookieAuthenticationDefaults.AuthenticationScheme;
+                    options.Cookie.Name = "My_Cookie_Name_In_Browser";
                     // Cookie settings
                     // configuration can be written here:
                     // builder.Services.ConfigureApplicationCookie
 
                     options.Cookie.HttpOnly = true;
-                    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
 
                     options.LoginPath = "/Account/Login";
                     options.AccessDeniedPath = "/Account/AccessDenied";
@@ -208,6 +108,99 @@ namespace Application.Services.Infrastructure
             return services;
         }
 
+        public static IServiceCollection AddApplicationAuthorization(this IServiceCollection services)
+        {
+            services.AddAuthorization(options =>
+            {
+                //// Policy-based Role authorization
+                //// ClassRoomController
+                //options.AddPolicy(TS.Policies.FullControlPolicy, policy =>
+                //{
+                //    policy.RequireRole(TS.Roles.Admin);
+                //});
+
+                //options.AddPolicy(TS.Policies.ReadAndWritePolicy, policy =>
+                //{
+                //    policy.RequireRole(
+                //        TS.Roles.Contributor,
+                //        TS.Roles.Admin);
+                //});
+
+                //options.AddPolicy(TS.Policies.ReadPolicy, policy =>
+                //{
+                //    policy.RequireRole(
+                //        TS.Roles.User,
+                //        TS.Roles.Contributor,
+                //        TS.Roles.Admin);
+                //});
+
+
+                //// Calim-based authorization
+                //// StudentController
+                //options.AddPolicy("CaimBasedPolicy", policy =>
+                //{
+                //    policy.RequireClaim("Student");
+                //});
+
+
+                //// Calim-based authorization using value
+                //// StudentController
+                //options.AddPolicy(TS.Policies.FullControlPolicy, policy =>
+                //{
+                //    policy.RequireClaim(TS.Contoller.Student,
+                //        TS.Permissions.Delete.ToString(),
+                //        TS.Permissions.Update.ToString());
+                //});
+
+                //options.AddPolicy(TS.Policies.ReadAndWritePolicy, policy =>
+                //{
+                //    policy.RequireClaim(TS.Contoller.Student,
+                //        TS.Permissions.Write.ToString());
+                //});
+
+                //options.AddPolicy(TS.Policies.ReadPolicy, policy =>
+                //{
+                //    policy.RequireClaim(TS.Contoller.Student,
+                //        TS.Permissions.Read.ToString());
+                //});
+
+
+                //Policy-based requierment authorization
+                //ModuleController
+                options.AddPolicy(TS.Policies.FullControlPolicy, policy =>
+                {
+                    policy.Requirements.Add(new AdminRequirements());
+                });
+
+                options.AddPolicy(TS.Policies.ReadAndWritePolicy, policy =>
+                {
+                    policy.Requirements.Add(new ContributorRequirements());
+                });
+
+                options.AddPolicy(TS.Policies.ReadPolicy, policy =>
+                {
+                    policy.Requirements.Add(new UserRequirements());
+                });
+
+
+
+                options.AddPolicy(TS.Policies.GenericPolicy, policy =>
+                {
+                    policy.Requirements.Add(new ConventionBasedRequirements());
+                });
+            });
+
+            //services.AddSingleton<IAuthorizationHandler, AdminRequirementHandler>();
+            //services.AddSingleton<IAuthorizationHandler, ContributorRequirementHandler>();
+            //services.AddSingleton<IAuthorizationHandler, UserRequirementHandler>();
+
+            services.AddSingleton<IAuthorizationHandler, GenericRequirmentsHandler>();
+
+            services.AddSingleton<IAuthorizationHandler, ConventionBasedRequirementHandler>();
+
+            return services;
+        }
+
         public static async Task<IApplicationBuilder> SeedDataAsync(this WebApplication app)
         {
             using (var scope = app.Services.CreateScope())
@@ -216,7 +209,7 @@ namespace Application.Services.Infrastructure
                 var cntx = scope.ServiceProvider.GetRequiredService<UserIdentityContext>();
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-                //await cntx.Database.EnsureDeletedAsync();
+                await cntx.Database.EnsureDeletedAsync();
                 if (await cntx.Database.EnsureCreatedAsync())
                 {
                     // Creating Role Entities
@@ -241,9 +234,7 @@ namespace Application.Services.Infrastructure
 
                     // Ading Claims to Users
                     await userManager.AddClaimAsync(adminUser, GetAdminClaims(TS.Contoller.Student));
-
                     await userManager.AddClaimAsync(contributorUser, GetcontributorClaims(TS.Contoller.Student));
-
                     await userManager.AddClaimAsync(user, GetUserClaims(TS.Contoller.Student));
 
                     // Adding Roles to Users
@@ -254,16 +245,18 @@ namespace Application.Services.Infrastructure
 
                     //Ading Claims to Roles
                     await roleManager.AddClaimAsync(adminRole, GetAdminClaims(TS.Contoller.Module));
-
                     await roleManager.AddClaimAsync(contributorRole, GetcontributorClaims(TS.Contoller.Module));
-
                     await roleManager.AddClaimAsync(userRole, GetUserClaims(TS.Contoller.Module));
+
+
+                    await roleManager.AddClaimAsync(adminRole, GetAdminClaims(TS.Contoller.Teacher));
+                    await roleManager.AddClaimAsync(contributorRole, GetcontributorClaims(TS.Contoller.Teacher));
+                    await roleManager.AddClaimAsync(userRole, GetUserClaims(TS.Contoller.Teacher));
 
                 }
             }
             return app;
         }
-
 
         private static Claim GetAdminClaims(string controllerName)
         {
@@ -290,6 +283,5 @@ namespace Application.Services.Infrastructure
                             TS.Permissions.Read
                         ));
         }
-
     }
 }
