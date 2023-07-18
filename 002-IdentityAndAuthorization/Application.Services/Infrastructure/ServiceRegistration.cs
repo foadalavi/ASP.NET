@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Routing.Matching;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Services.Infrastructure.Authorizaion.Requirements;
 using System.Security.Claims;
 using System.Text;
 
