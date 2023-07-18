@@ -1,0 +1,41 @@
+﻿@page
+@model Application.Ui.Pages.Account.ClaimManagementModel
+@{
+    ViewData["Title"] = "Claims";
+}
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Claim Type</th>
+        <th>Claim Values</th>
+    </tr>
+    @foreach (var item in Model.Claims)
+    {
+        <tr>
+            <td>@item.Type</td>
+            <td>@item.Value</td>
+        </tr>
+    }
+</table>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <h2>Add new claim</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Claim.Type" class="form-control" autocomplete="off" aria-required="true" />
+                <label asp-for="Claim.Type">Cmail Type</label>
+                <span asp-validation-for="Claim.Type" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Claim.Value" class="form-control" autocomplete="off" aria-required="true" />
+                <label asp-for="Claim.Value">Claim Value</label>
+                <span asp-validation-for="Claim.Value" class="text-danger"></span>
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Add</button>
+        </form>
+    </div>
+</div>

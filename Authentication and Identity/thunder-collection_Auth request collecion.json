@@ -1,0 +1,327 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Auth request collecion",
+    "dateExported": "2023-06-30T06:05:42.242Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "cbaaa845-3756-40ae-90f5-674c94a45c29",
+            "name": "Auth",
+            "containerId": "",
+            "created": "2023-06-29T15:49:03.336Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "60420629-d630-471d-adfd-6c140020c273",
+            "name": "Student",
+            "containerId": "06f02381-7de4-4c41-a5f8-23bd3ee7b7d0",
+            "created": "2023-06-29T15:49:03.337Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "c375c83d-c838-485b-8a9f-fd6d6159a518",
+            "name": "Module",
+            "containerId": "06f02381-7de4-4c41-a5f8-23bd3ee7b7d0",
+            "created": "2023-06-29T15:49:03.338Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "5f123e12-56c2-4006-a836-ab865ed5d911",
+            "name": "Teacher",
+            "containerId": "06f02381-7de4-4c41-a5f8-23bd3ee7b7d0",
+            "created": "2023-06-29T15:49:03.339Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "1ab47cf1-4d01-4498-9d19-db3bce8f250b",
+            "name": "ClassRoom",
+            "containerId": "06f02381-7de4-4c41-a5f8-23bd3ee7b7d0",
+            "created": "2023-06-29T15:49:03.340Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "06f02381-7de4-4c41-a5f8-23bd3ee7b7d0",
+            "name": "API",
+            "containerId": "",
+            "created": "2023-06-29T16:23:24.689Z",
+            "sortNum": 60000,
+            "settings": {
+                "auth": {
+                    "type": "bearer",
+                    "bearer": "{{JwtToken}}"
+                }
+            }
+        }
+    ],
+    "requests": [
+        {
+            "_id": "814d2b7c-dd62-48d7-8c1b-7125d7d359fa",
+            "colId": "f5bb314a-0ed1-4f47-b55f-8c8636f2bad7",
+            "containerId": "cbaaa845-3756-40ae-90f5-674c94a45c29",
+            "name": "Login",
+            "url": "http://localhost:5290/api/Auth/Login",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-06-29T15:49:03.336Z",
+            "modified": "2023-06-29T17:19:42.341Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"userName\": \"admin\",\n  \"password\": \"123\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "json.token",
+                    "action": "setto",
+                    "value": "{{JwtToken}}"
+                }
+            ]
+        },
+        {
+            "_id": "25a65b7f-02e9-43a3-b491-715a7bc797b2",
+            "colId": "f5bb314a-0ed1-4f47-b55f-8c8636f2bad7",
+            "containerId": "60420629-d630-471d-adfd-6c140020c273",
+            "name": "GET",
+            "url": "http://localhost:5291/api/Student/GetStudent",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-06-29T15:49:03.338Z",
+            "modified": "2023-06-29T16:24:42.054Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "b1c761f0-42db-4780-924f-be49aeeda94e",
+            "colId": "f5bb314a-0ed1-4f47-b55f-8c8636f2bad7",
+            "containerId": "60420629-d630-471d-adfd-6c140020c273",
+            "name": "Post",
+            "url": "http://localhost:5291/api/Student/AddStudent",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-06-29T15:49:03.339Z",
+            "modified": "2023-06-29T16:24:48.133Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "eb9535ff-09c2-4bd4-b125-460535fb7d4b",
+            "colId": "f5bb314a-0ed1-4f47-b55f-8c8636f2bad7",
+            "containerId": "60420629-d630-471d-adfd-6c140020c273",
+            "name": "Delete",
+            "url": "http://localhost:5291/api/Student/DeleteStudent",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2023-06-29T15:49:03.340Z",
+            "modified": "2023-06-29T16:24:52.105Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "d465cb36-b4ee-4bf6-9343-d7eda87e5ce1",
+            "colId": "f5bb314a-0ed1-4f47-b55f-8c8636f2bad7",
+            "containerId": "60420629-d630-471d-adfd-6c140020c273",
+            "name": "Put",
+            "url": "http://localhost:5291/api/Student/UpdateStudent",
+            "method": "PUT",
+            "sortNum": 60000,
+            "created": "2023-06-29T15:49:03.341Z",
+            "modified": "2023-06-29T16:24:55.185Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "7f066dc6-c404-463b-912b-d067b3c0e765",
+            "colId": "f5bb314a-0ed1-4f47-b55f-8c8636f2bad7",
+            "containerId": "c375c83d-c838-485b-8a9f-fd6d6159a518",
+            "name": "GET",
+            "url": "http://localhost:5291/api/Module/GetModule",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2023-06-29T15:49:03.342Z",
+            "modified": "2023-06-29T16:25:01.993Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "a8717d43-f041-4c37-a6b0-1752b5251ac6",
+            "colId": "f5bb314a-0ed1-4f47-b55f-8c8636f2bad7",
+            "containerId": "c375c83d-c838-485b-8a9f-fd6d6159a518",
+            "name": "Post",
+            "url": "http://localhost:5291/api/Module/AddModule",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2023-06-29T15:49:03.343Z",
+            "modified": "2023-06-29T16:25:04.330Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "5a25859a-d2ab-4a80-bdb9-b01a95922cb2",
+            "colId": "f5bb314a-0ed1-4f47-b55f-8c8636f2bad7",
+            "containerId": "c375c83d-c838-485b-8a9f-fd6d6159a518",
+            "name": "Delete",
+            "url": "http://localhost:5291/api/Module/DeleteModule",
+            "method": "DELETE",
+            "sortNum": 90000,
+            "created": "2023-06-29T15:49:03.344Z",
+            "modified": "2023-06-29T16:25:07.121Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "7c6edc9d-cd3a-4f6c-9b72-5ae83113e4cb",
+            "colId": "f5bb314a-0ed1-4f47-b55f-8c8636f2bad7",
+            "containerId": "c375c83d-c838-485b-8a9f-fd6d6159a518",
+            "name": "Put",
+            "url": "http://localhost:5291/api/Module/UpdateModule",
+            "method": "PUT",
+            "sortNum": 100000,
+            "created": "2023-06-29T15:49:03.345Z",
+            "modified": "2023-06-29T16:25:09.553Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "68d15f5a-5138-41b8-9d6a-d8028b8e9ff6",
+            "colId": "f5bb314a-0ed1-4f47-b55f-8c8636f2bad7",
+            "containerId": "5f123e12-56c2-4006-a836-ab865ed5d911",
+            "name": "GET",
+            "url": "http://localhost:5291/api/Teacher/GetTeacher",
+            "method": "GET",
+            "sortNum": 110000,
+            "created": "2023-06-29T15:49:03.346Z",
+            "modified": "2023-06-29T16:25:14.372Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "4ae015cd-c56e-4602-9c77-e4bbd04ce8cf",
+            "colId": "f5bb314a-0ed1-4f47-b55f-8c8636f2bad7",
+            "containerId": "5f123e12-56c2-4006-a836-ab865ed5d911",
+            "name": "Post",
+            "url": "http://localhost:5291/api/Teacher/AddTeacher",
+            "method": "POST",
+            "sortNum": 120000,
+            "created": "2023-06-29T15:49:03.347Z",
+            "modified": "2023-06-29T16:25:16.577Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "a535a37e-d2ef-4f17-b253-ad01836d160f",
+            "colId": "f5bb314a-0ed1-4f47-b55f-8c8636f2bad7",
+            "containerId": "5f123e12-56c2-4006-a836-ab865ed5d911",
+            "name": "Delete",
+            "url": "http://localhost:5291/api/Teacher/DeleteTeacher",
+            "method": "DELETE",
+            "sortNum": 130000,
+            "created": "2023-06-29T15:49:03.348Z",
+            "modified": "2023-06-29T16:25:18.841Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "9065992d-fcf9-4e76-be3a-691077651682",
+            "colId": "f5bb314a-0ed1-4f47-b55f-8c8636f2bad7",
+            "containerId": "5f123e12-56c2-4006-a836-ab865ed5d911",
+            "name": "Put",
+            "url": "http://localhost:5291/api/Teacher/UpdateTeacher",
+            "method": "PUT",
+            "sortNum": 140000,
+            "created": "2023-06-29T15:49:03.349Z",
+            "modified": "2023-06-29T16:25:21.403Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "5d381882-f782-4521-b77c-26141cfd52b1",
+            "colId": "f5bb314a-0ed1-4f47-b55f-8c8636f2bad7",
+            "containerId": "1ab47cf1-4d01-4498-9d19-db3bce8f250b",
+            "name": "GET",
+            "url": "http://localhost:5291/api/ClassRoom/GetClassRoom",
+            "method": "GET",
+            "sortNum": 150000,
+            "created": "2023-06-29T15:49:03.350Z",
+            "modified": "2023-06-29T17:20:36.813Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJBZG1pbkNsYWltX1VzZXIiOiJ2YWx1ZSAxIiwidGVzdCI6IjEyMyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiQWRtaW5DbGFpbV9Sb2xlIjoidmFsdWUgMSIsImV4cCI6MTY4ODA2Mjc4MiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTI5MCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjUyOTEifQ.OS8Blm77vfkythF5m7-NzaSoTFSJnhfg7bmPqrbVvTKTpiIiPk3cQup1T110Pmq3shphmV-BT4Qz-a3w5wG2Ow"
+            },
+            "tests": []
+        },
+        {
+            "_id": "c9dd5201-0309-44cc-a40d-19bc5530e02c",
+            "colId": "f5bb314a-0ed1-4f47-b55f-8c8636f2bad7",
+            "containerId": "1ab47cf1-4d01-4498-9d19-db3bce8f250b",
+            "name": "Post",
+            "url": "http://localhost:5291/api/ClassRoom/AddClassRoom",
+            "method": "POST",
+            "sortNum": 160000,
+            "created": "2023-06-29T15:49:03.351Z",
+            "modified": "2023-06-29T16:25:32.793Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "d7a72e4c-1d14-4e74-97c1-a3ab33e1dbca",
+            "colId": "f5bb314a-0ed1-4f47-b55f-8c8636f2bad7",
+            "containerId": "1ab47cf1-4d01-4498-9d19-db3bce8f250b",
+            "name": "Delete",
+            "url": "http://localhost:5291/api/ClassRoom/DeleteClassRoom",
+            "method": "DELETE",
+            "sortNum": 170000,
+            "created": "2023-06-29T15:49:03.352Z",
+            "modified": "2023-06-29T16:25:35.657Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "30207d3b-567b-47a5-a913-c88595de348d",
+            "colId": "f5bb314a-0ed1-4f47-b55f-8c8636f2bad7",
+            "containerId": "1ab47cf1-4d01-4498-9d19-db3bce8f250b",
+            "name": "Put",
+            "url": "http://localhost:5291/api/ClassRoom/UpdateClassRoom",
+            "method": "PUT",
+            "sortNum": 180000,
+            "created": "2023-06-29T15:49:03.353Z",
+            "modified": "2023-06-29T16:25:38.464Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ],
+    "settings": {
+        "tests": [
+            {
+                "type": "res-code",
+                "custom": "",
+                "action": "equal",
+                "value": "200"
+            }
+        ]
+    }
+}

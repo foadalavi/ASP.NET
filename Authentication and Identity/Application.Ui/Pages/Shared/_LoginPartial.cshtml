@@ -1,0 +1,25 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <form method="post" asp-page="/Account/Logout" class="form-inline">
+        <span class="dropdown">
+            <span class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Welcome @User.Identity.Name
+            </span>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li class="dropdown-item">
+                    <button type="submit" class="m-lg-2 btn btn-likn">Logout</button>
+                </li>
+                <li class="dropdown-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Account/AddUser">New User</a>
+                </li>
+                <li class="dropdown-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Account/ClaimManagement">Manage Clames</a>
+                </li>
+            </ul>
+        </span>
+    </form>
+}
+else
+{
+    <a class="btn btn-link" asp-page="/Account/Login">Login</a>
+}
