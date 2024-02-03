@@ -1,0 +1,166 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Refresh Token",
+    "dateExported": "2024-02-03T15:20:16.066Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "4f0d584b-1e15-44ad-af67-ac033e8200b4",
+            "name": "AuthServer",
+            "containerId": "",
+            "created": "2024-01-31T15:20:27.253Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "6e05443e-d385-4d33-8b1d-1c77bdcea2d0",
+            "name": "AuthController",
+            "containerId": "4f0d584b-1e15-44ad-af67-ac033e8200b4",
+            "created": "2024-01-31T18:33:56.265Z",
+            "sortNum": 70000
+        },
+        {
+            "_id": "5c179d53-2233-4fcc-9e41-9ecd91f37040",
+            "name": "TestController",
+            "containerId": "4f0d584b-1e15-44ad-af67-ac033e8200b4",
+            "created": "2024-01-31T18:34:25.610Z",
+            "sortNum": 80000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "bb028baa-fcde-4a13-84b3-824d0b9f7117",
+            "colId": "2690bb17-fae3-4c88-9df7-3b7877f9d624",
+            "containerId": "6e05443e-d385-4d33-8b1d-1c77bdcea2d0",
+            "name": "Register",
+            "url": "http://localhost:5092/api/Auth/Register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-01-31T15:20:27.253Z",
+            "modified": "2024-02-03T12:13:15.477Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"userName\": \"admin\",\n  \"password\": \"123\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "54118256-823d-44f5-9c77-8ac92cbfe21f",
+            "colId": "2690bb17-fae3-4c88-9df7-3b7877f9d624",
+            "containerId": "6e05443e-d385-4d33-8b1d-1c77bdcea2d0",
+            "name": "Login",
+            "url": "http://localhost:5092/api/Auth/Login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-01-31T17:26:41.589Z",
+            "modified": "2024-02-03T12:41:53.040Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"userName\": \"admin\",\n  \"password\": \"123\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "json.jwtToken",
+                    "action": "setto",
+                    "value": "{{JwtToken}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "json.refreshToken",
+                    "action": "setto",
+                    "value": "{{RefreshToken}}"
+                }
+            ]
+        },
+        {
+            "_id": "093de864-6186-4952-8bff-61ed3924b685",
+            "colId": "2690bb17-fae3-4c88-9df7-3b7877f9d624",
+            "containerId": "5c179d53-2233-4fcc-9e41-9ecd91f37040",
+            "name": "AuthorizedTest",
+            "url": "http://localhost:5092/api/Test/AuthorizedTest",
+            "method": "GET",
+            "sortNum": 200000,
+            "created": "2024-01-31T18:34:48.713Z",
+            "modified": "2024-01-31T18:55:13.303Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{JwtToken}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "8ca138c7-0065-4bb6-aa1d-ddda8b02aaf4",
+            "colId": "2690bb17-fae3-4c88-9df7-3b7877f9d624",
+            "containerId": "5c179d53-2233-4fcc-9e41-9ecd91f37040",
+            "name": "Test",
+            "url": "http://localhost:5092/api/Test/Test",
+            "method": "GET",
+            "sortNum": 210000,
+            "created": "2024-01-31T18:35:11.146Z",
+            "modified": "2024-01-31T18:35:18.339Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "c381dbf9-099e-4a5b-9e66-a63be3db2175",
+            "colId": "2690bb17-fae3-4c88-9df7-3b7877f9d624",
+            "containerId": "6e05443e-d385-4d33-8b1d-1c77bdcea2d0",
+            "name": "RefreshToken",
+            "url": "http://localhost:5092/api/Auth/RefreshToken",
+            "method": "POST",
+            "sortNum": 230000,
+            "created": "2024-02-03T12:40:29.228Z",
+            "modified": "2024-02-03T13:15:51.713Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"jwtToken\": \"{{JwtToken}}\",\n  \"refreshToken\": \"{{RefreshToken}}\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "json.jwtToken",
+                    "action": "setto",
+                    "value": "{{JwtToken}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "json.refreshToken",
+                    "action": "setto",
+                    "value": "{{RefreshToken}}"
+                }
+            ]
+        }
+    ],
+    "settings": {
+        "tests": [
+            {
+                "type": "res-code",
+                "custom": "",
+                "action": "equal",
+                "value": "200"
+            }
+        ]
+    }
+}
