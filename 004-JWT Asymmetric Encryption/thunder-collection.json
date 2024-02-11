@@ -1,0 +1,221 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Public/Private Key",
+    "dateExported": "2024-02-11T15:02:54.851Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "60241b47-8f97-4c65-a546-5cba8fb274a7",
+            "name": "AuthServer",
+            "containerId": "",
+            "created": "2024-02-11T14:21:29.321Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "c975e92d-77b1-42ba-b1a7-744dae59fc48",
+            "name": "AuthController",
+            "containerId": "60241b47-8f97-4c65-a546-5cba8fb274a7",
+            "created": "2024-02-11T14:21:29.322Z",
+            "sortNum": 70000
+        },
+        {
+            "_id": "481868ad-0a37-4a29-8402-a4288041e179",
+            "name": "TestController",
+            "containerId": "60241b47-8f97-4c65-a546-5cba8fb274a7",
+            "created": "2024-02-11T14:21:29.323Z",
+            "sortNum": 80000
+        },
+        {
+            "_id": "c42b5291-ddcc-41b7-8fb4-9f54144c8053",
+            "name": "ApplicationUI",
+            "containerId": "",
+            "created": "2024-02-11T14:40:44.939Z",
+            "sortNum": 90000
+        },
+        {
+            "_id": "60b6a4fd-dfff-4d82-bbcc-cf34c372fc97",
+            "name": "HomeControoler",
+            "containerId": "c42b5291-ddcc-41b7-8fb4-9f54144c8053",
+            "created": "2024-02-11T14:40:54.986Z",
+            "sortNum": 100000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "e0abbec4-0045-4010-bbb0-507518a674ee",
+            "colId": "92b6b946-c8fc-44fd-996e-c7a452457571",
+            "containerId": "c975e92d-77b1-42ba-b1a7-744dae59fc48",
+            "name": "Register",
+            "url": "http://localhost:5092/api/Auth/Register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-11T14:21:29.321Z",
+            "modified": "2024-02-11T14:26:34.288Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"userName\": \"admin\",\n  \"password\": \"123\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "0bbd49c5-58f4-4ee9-87cc-12d4d3092003",
+            "colId": "92b6b946-c8fc-44fd-996e-c7a452457571",
+            "containerId": "c975e92d-77b1-42ba-b1a7-744dae59fc48",
+            "name": "Login",
+            "url": "http://localhost:5092/api/Auth/Login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-02-11T14:21:29.322Z",
+            "modified": "2024-02-11T14:21:29.322Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"userName\": \"admin\",\n  \"password\": \"123\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "json.jwtToken",
+                    "action": "setto",
+                    "value": "{{JwtToken}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "json.refreshToken",
+                    "action": "setto",
+                    "value": "{{JwtRefreshToken}}"
+                }
+            ]
+        },
+        {
+            "_id": "a4c7dfb9-e456-4515-b6b6-53caacaa3960",
+            "colId": "92b6b946-c8fc-44fd-996e-c7a452457571",
+            "containerId": "c975e92d-77b1-42ba-b1a7-744dae59fc48",
+            "name": "RefreshToken",
+            "url": "http://localhost:5092/api/Auth/RefreshToken",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-02-11T14:21:29.323Z",
+            "modified": "2024-02-11T14:25:14.334Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"refreshToken\": \"{{JwtRefreshToken}}\",\n  \"jwtToken\": \"{{JwtToken}}\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{JwtToken}}"
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "json.jwtToken",
+                    "action": "setto",
+                    "value": "{{JwtToken}}"
+                },
+                {
+                    "type": "set-env-var",
+                    "custom": "json.refreshToken",
+                    "action": "setto",
+                    "value": "{{JwtRefreshToken}}"
+                }
+            ]
+        },
+        {
+            "_id": "90a651d3-3ce5-40bb-b23b-5db649a48e04",
+            "colId": "92b6b946-c8fc-44fd-996e-c7a452457571",
+            "containerId": "60b6a4fd-dfff-4d82-bbcc-cf34c372fc97",
+            "name": "Profile",
+            "url": "http://localhost:5090/api/Home/Profile",
+            "method": "GET",
+            "sortNum": 115000,
+            "created": "2024-02-11T14:42:21.369Z",
+            "modified": "2024-02-11T14:52:52.551Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{JwtToken}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "e8a52824-4cf0-4669-8e5a-d3ee76a6355e",
+            "colId": "92b6b946-c8fc-44fd-996e-c7a452457571",
+            "containerId": "481868ad-0a37-4a29-8402-a4288041e179",
+            "name": "AuthorizedTest",
+            "url": "http://localhost:5092/api/Test/AuthorizedTest",
+            "method": "GET",
+            "sortNum": 200000,
+            "created": "2024-02-11T14:21:29.324Z",
+            "modified": "2024-02-11T14:21:29.324Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{JwtToken}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "f40960b4-0524-420f-bda8-da3ac060627f",
+            "colId": "92b6b946-c8fc-44fd-996e-c7a452457571",
+            "containerId": "481868ad-0a37-4a29-8402-a4288041e179",
+            "name": "Test",
+            "url": "http://localhost:5092/api/Test/Test",
+            "method": "GET",
+            "sortNum": 210000,
+            "created": "2024-02-11T14:21:29.325Z",
+            "modified": "2024-02-11T14:21:29.325Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "367dc368-7345-4c3d-8e14-5cd7c0ea4da9",
+            "colId": "92b6b946-c8fc-44fd-996e-c7a452457571",
+            "containerId": "60b6a4fd-dfff-4d82-bbcc-cf34c372fc97",
+            "name": "Get",
+            "url": "http://localhost:5090/api/home/get",
+            "method": "GET",
+            "sortNum": 230000,
+            "created": "2024-02-11T14:41:03.963Z",
+            "modified": "2024-02-11T14:48:51.783Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ],
+    "settings": {
+        "tests": [
+            {
+                "type": "res-code",
+                "custom": "",
+                "action": "equal",
+                "value": "200"
+            }
+        ]
+    }
+}
